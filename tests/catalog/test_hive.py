@@ -955,7 +955,7 @@ def test_rename_table_from_does_not_exists() -> None:
     catalog = HiveCatalog(HIVE_CATALOG_NAME, uri=HIVE_METASTORE_FAKE_URL)
 
     catalog._client = MagicMock()
-    catalog._client.__enter__()._hive_version = 3
+    catalog._client._hive_version = 3
     catalog._client.__enter__().alter_table_with_environment_context.side_effect = NoSuchObjectException(
         message="hive.default.does_not_exists table not found"
     )
@@ -970,7 +970,7 @@ def test_rename_table_to_namespace_does_not_exists() -> None:
     catalog = HiveCatalog(HIVE_CATALOG_NAME, uri=HIVE_METASTORE_FAKE_URL)
 
     catalog._client = MagicMock()
-    catalog._client.__enter__()._hive_version = 3
+    catalog._client._hive_version = 3
     catalog._client.__enter__().alter_table_with_environment_context.side_effect = InvalidOperationException(
         message="Unable to change partition or table. Database default does not exist Check metastore logs for detailed stack.does_not_exists"
     )
